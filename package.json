@@ -1,0 +1,34 @@
+{
+  "name": "alexandria",
+  "version": "1.0.0",
+  "description": "Unified Logger Module for Bareksa Typescript/Javascript",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "test": "npm run test",
+    "build": "tsc"
+  },
+  "keywords": [
+    "logger",
+    "winston",
+    "apm",
+    "kafka",
+    "sentry",
+    "fluent"
+  ],
+  "author": "Tigor Hutasuhut",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^13.13.4",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@sentry/node": "^5.15.5",
+    "elastic-apm-node": "^3.5.0",
+    "fluent-logger": "^3.4.1",
+    "kafka-node": "^5.0.0",
+    "winston": "^3.2.1"
+  }
+}

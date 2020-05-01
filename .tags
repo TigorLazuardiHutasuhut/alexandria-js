@@ -1,0 +1,45 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
+APMAgent	src/alexandria.ts	/^export type APMAgent = typeof agent$/;"	a
+Alexandria	src/alexandria.ts	/^class Alexandria {$/;"	c
+AlexandriaBaseEntry	src/logger.ts	/^export interface AlexandriaBaseEntry {$/;"	i
+AlexandriaEntry	src/logger.ts	/^export class AlexandriaEntry {$/;"	c
+Entry	src/logger.ts	/^interface Entry {$/;"	i
+Instances	src/alexandria.ts	/^export interface Instances {$/;"	i
+apm	src/alexandria.ts	/^    apm?: APMAgent$/;"	p	interface:Instances
+caller	src/logger.ts	/^    caller: string | undefined$/;"	p	interface:Entry
+code	src/logger.ts	/^    code: number$/;"	p	interface:Entry
+code	src/logger.ts	/^    code?: number$/;"	p	interface:AlexandriaBaseEntry
+config	src/alexandria.ts	/^    private config: AlexandriaConfig$/;"	p	class:Alexandria
+config	src/logger.ts	/^        private config: AlexandriaConfig,$/;"	p	class:AlexandriaEntry
+constructor	src/alexandria.ts	/^    constructor(config: AlexandriaConfig) {$/;"	m	class:Alexandria
+constructor	src/logger.ts	/^    constructor($/;"	m	class:AlexandriaEntry
+data	src/logger.ts	/^    data: any | null$/;"	p	interface:Entry
+data	src/logger.ts	/^    data?: any | null$/;"	p	interface:AlexandriaBaseEntry
+debug	src/logger.ts	/^    debug() {$/;"	m	class:AlexandriaEntry
+entry	src/logger.ts	/^    private entry: Entry$/;"	p	class:AlexandriaEntry
+error	src/logger.ts	/^    error: Error | null$/;"	p	interface:Entry
+error	src/logger.ts	/^    error?: Error | null$/;"	p	interface:AlexandriaBaseEntry
+fluent	src/alexandria.ts	/^    fluent?: FluentSender<any>$/;"	p	interface:Instances
+getCaller	src/logger.ts	/^    private getCaller(): string | undefined {$/;"	m	class:AlexandriaEntry
+info	src/logger.ts	/^    info() {$/;"	m	class:AlexandriaEntry
+instances	src/alexandria.ts	/^    private instances: Instances$/;"	p	class:Alexandria
+instances	src/logger.ts	/^        private instances: Instances,$/;"	p	class:AlexandriaEntry
+kafka	src/alexandria.ts	/^    kafka?: KafkaProducer$/;"	p	interface:Instances
+level	src/logger.ts	/^    level: 'debug' | 'info' | 'warn' | 'error' | 'fatal' | null$/;"	p	interface:Entry
+levels	src/alexandria.ts	/^    private levels: Levels$/;"	p	class:Alexandria
+levels	src/logger.ts	/^        private levels: Levels,$/;"	p	class:AlexandriaEntry
+log	src/alexandria.ts	/^    log(entry: AlexandriaBaseEntry): AlexandriaEntry {$/;"	m	class:Alexandria
+message	src/logger.ts	/^    message: string | null$/;"	p	interface:Entry
+message	src/logger.ts	/^    message?: string | null$/;"	p	interface:AlexandriaBaseEntry
+parseLevels	src/alexandria.ts	/^    private parseLevels(): Levels {$/;"	m	class:Alexandria
+payload	src/logger.ts	/^        const payload = JSON.stringify(this.entry)$/;"	C	method:AlexandriaEntry.debug
+payload	src/logger.ts	/^        const payload = JSON.stringify(this.entry)$/;"	C	method:AlexandriaEntry.info
+time	src/logger.ts	/^    time: string$/;"	p	interface:Entry
+winston	src/alexandria.ts	/^    winston: Winston$/;"	p	interface:Instances
