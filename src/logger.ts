@@ -19,6 +19,13 @@ interface Entry {
     message?: string | null
 }
 
+interface SelectInstances {
+    apm: boolean | undefined
+    sentry: boolean | undefined
+    fluent: boolean | undefined
+    kafka: boolean | undefined
+}
+
 export class AlexandriaEntry {
     private entry: Entry
     constructor(
@@ -49,82 +56,61 @@ export class AlexandriaEntry {
         this.config = config
         this.instances = instances
     }
-    private getCaller(): string | undefined {
+    private getCaller(index = 4): string | undefined {
         let err: Error
         try {
             throw Error('')
         } catch (e) {
             err = e
         }
-        return err.stack?.split('\n')[4]
+        return err.stack?.split('\n')[index]
     }
 
-    debug() {
-        this.entry.level = 'debug'
-        if (this.config?.traceCaller) {
-            this.entry.caller = this.getCaller()
+    private handleKafkaError(err: any) {
+        const payload: Entry = {
+            code: 5500,
+            level: 'fatal',
+            caller: this.getCaller(),
+            time: new Date().toISOString(),
+            data: null,
+            error: err,
+            message: `An error occurred when sending a message to topic ${this.config?.kafka?.topic}`,
         }
-        const payload = JSON.stringify(this.entry)
+        const message = JSON.stringify(payload)
+        if (this.config?.verbose) {
+            this.instances.winston.log({
+                level: 'fatal',
+                message,
+            })
+        }
+        if (this.config?.sentry?.enable) {
+            sentry.captureException(message)
+        }
+        if (this.config?.apm?.enable) {
+            this.instances.apm?.captureError(message)
+        }
+        if (this.config?.fluent?.enable) {
+            this.instances.fluent?.emit(this.config?.serviceName || '', message)
+        }
+    }
+
+    private broadCast(
+        entry: Entry,
+        level: 'debug' | 'info' | 'warn' | 'error' | 'fatal',
+        instances: SelectInstances,
+    ) {
+        entry.level = level
+        if (this.config?.traceCaller) {
+            entry.caller = this.getCaller()
+        }
+        const payload = JSON.stringify(entry)
         setTimeout(() => {
-            if (this.config?.apm?.enable) {
+            if (instances.apm) {
                 this.instances.apm?.logger.debug(payload)
             }
         }, 0)
         setTimeout(() => {
-            if (this.config?.fluent?.enable) {
-                this.instances.fluent?.emit(
-                    this.config.serviceName,
-                    this.entry,
-                    Date.now(),
-                )
-            }
-        }, 0)
-        setTimeout(() => {
-            if (this.config?.sentry?.enable) {
-                sentry.captureMessage(payload)
-            }
-        }, 0)
-        setTimeout(() => {
-            if (this.config?.kafka?.enable) {
-                this.instances.kafka?.send(
-                    [
-                        {
-                            topic: this.config.kafka.topic,
-                            messages: payload,
-                        },
-                    ],
-                    (err) => {
-                        if (this.config?.verbose) {
-                            console.log(err)
-                        }
-                    },
-                )
-            }
-        })
-        this.instances.winston.log({ level: 'debug', message: payload })
-    }
-
-    info() {
-        this.entry.level = 'info'
-        if (this.config?.traceCaller) {
-            this.entry.caller = this.getCaller()
-        }
-        const payload = JSON.stringify(this.entry)
-        setTimeout(() => {
-            if (
-                this.config?.apm?.enable &&
-                this.levels &&
-                this.levels.apmLevel < 4
-            ) {
-                this.instances.apm?.logger.info(payload)
-            }
-        }, 0)
-        setTimeout(() => {
-            if (
-                this.config?.fluent?.enable &&
-                this.levels &&
-                this.levels.fluentLevel < 4
-            ) {
+            if (instances.fluent) {
                 this.instances.fluent?.emit(
                     this.config?.serviceName || '',
                     this.entry,
@@ -133,206 +119,131 @@ export class AlexandriaEntry {
             }
         }, 0)
         setTimeout(() => {
-            if (
-                this.config?.sentry?.enable &&
-                this.levels &&
-                this.levels.sentryLevel < 4
-            ) {
+            if (instances.sentry) {
                 sentry.captureMessage(payload)
             }
         }, 0)
         setTimeout(() => {
-            if (
-                this.config?.kafka?.enable &&
-                this.levels &&
-                this.levels.kafkaLevel < 4
-            ) {
+            if (instances.kafka) {
                 this.instances.kafka?.send(
                     [
                         {
-                            topic: [
-                                this.config!.kafka!.topicPrefix,
-                                this.config!.kafka!.topic,
-                                this.config!.kafka!.topicSuffix,
-                            ].join('.'),
+                            topic: this.config?.kafka?.topic || '',
                             messages: payload,
                         },
                     ],
-                    (err) => {
-                        if (this.config?.verbose) {
-                            console.log(err)
-                        }
-                    },
+                    this.handleKafkaError,
                 )
             }
         })
-        this.instances.winston.log({ level: 'info', message: payload })
+        this.instances.winston.log({ level: level, message: payload })
     }
 
+    /**
+     * Send log to all enabled services regardless of levels. Used for debugging.
+     */
+    debug() {
+        this.broadCast(this.entry, 'debug', {
+            apm: this.config?.apm?.enable,
+            fluent: this.config?.fluent?.enable,
+            kafka: this.config?.kafka?.enable,
+            sentry: this.config?.sentry?.enable,
+        })
+    }
+
+    /**
+     * Send log to all enabled services with level of 'info' or below.
+     */
+    info() {
+        this.broadCast(this.entry, 'info', {
+            apm:
+                this.config?.apm?.enable &&
+                this.levels &&
+                this.levels.apmLevel <= 3,
+            fluent:
+                this.config?.fluent?.enable &&
+                this.levels &&
+                this.levels.fluentLevel <= 3,
+            kafka:
+                this.config?.kafka?.enable &&
+                this.levels &&
+                this.levels.kafkaLevel <= 3,
+            sentry:
+                this.config?.sentry?.enable &&
+                this.levels &&
+                this.levels.sentryLevel <= 3,
+        })
+    }
+
+    /**
+     * Send log to all enabled services with level of 'warn' or below.
+     */
     warn() {
-        this.entry.level = 'warn'
-        if (this.config?.traceCaller) {
-            this.entry.caller = this.getCaller()
-        }
-        const payload = JSON.stringify(this.entry)
-        setTimeout(() => {
-            if (
+        this.broadCast(this.entry, 'warn', {
+            apm:
                 this.config?.apm?.enable &&
                 this.levels &&
-                this.levels.apmLevel < 3
-            ) {
-                this.instances.apm?.logger.warn(payload)
-            }
-        }, 0)
-        setTimeout(() => {
-            if (
+                this.levels.apmLevel <= 2,
+            fluent:
                 this.config?.fluent?.enable &&
                 this.levels &&
-                this.levels.fluentLevel < 3
-            ) {
-                this.instances.fluent?.emit(
-                    this.config.serviceName,
-                    this.entry,
-                    Date.now(),
-                )
-            }
-        }, 0)
-        setTimeout(() => {
-            if (
-                this.config?.sentry?.enable &&
-                this.levels &&
-                this.levels.sentryLevel < 3
-            ) {
-                sentry.captureMessage(payload)
-            }
-        }, 0)
-        setTimeout(() => {
-            if (
+                this.levels.fluentLevel <= 2,
+            kafka:
                 this.config?.kafka?.enable &&
                 this.levels &&
-                this.levels.kafkaLevel < 3
-            ) {
-                this.instances.kafka?.send(
-                    [
-                        {
-                            topic: this.config.kafka.topic,
-                            messages: payload,
-                        },
-                    ],
-                    (err) => {
-                        if (this.config?.verbose) {
-                            console.log(err)
-                        }
-                    },
-                )
-            }
+                this.levels.kafkaLevel <= 2,
+            sentry:
+                this.config?.sentry?.enable &&
+                this.levels &&
+                this.levels.sentryLevel <= 2,
         })
-        this.instances.winston.log({ level: 'warning', message: payload })
     }
 
+    /**
+     * Send log to all enabled services with level of 'error' or below.
+     */
     error() {
-        this.entry.level = 'error'
-        if (this.config?.traceCaller) {
-            this.entry.caller = this.getCaller()
-        }
-        const payload = JSON.stringify(this.entry)
-        setTimeout(() => {
-            if (
+        this.broadCast(this.entry, 'error', {
+            apm:
                 this.config?.apm?.enable &&
                 this.levels &&
-                this.levels.apmLevel < 2
-            ) {
-                this.instances.apm?.logger.error(payload)
-            }
-        }, 0)
-        setTimeout(() => {
-            if (
+                this.levels.apmLevel <= 1,
+            fluent:
                 this.config?.fluent?.enable &&
                 this.levels &&
-                this.levels.fluentLevel < 2
-            ) {
-                this.instances.fluent?.emit(
-                    this.config.serviceName,
-                    this.entry,
-                    Date.now(),
-                )
-            }
-        }, 0)
-        setTimeout(() => {
-            if (
-                this.config?.sentry?.enable &&
-                this.levels &&
-                this.levels.sentryLevel < 2
-            ) {
-                sentry.captureException(payload)
-            }
-        }, 0)
-        setTimeout(() => {
-            if (
+                this.levels.fluentLevel <= 1,
+            kafka:
                 this.config?.kafka?.enable &&
                 this.levels &&
-                this.levels.kafkaLevel < 2
-            ) {
-                this.instances.kafka?.send(
-                    [
-                        {
-                            topic: this.config.kafka.topic,
-                            messages: payload,
-                        },
-                    ],
-                    (err) => {
-                        if (this.config?.verbose) {
-                            console.log(err)
-                        }
-                    },
-                )
-            }
+                this.levels.kafkaLevel <= 1,
+            sentry:
+                this.config?.sentry?.enable &&
+                this.levels &&
+                this.levels.sentryLevel <= 1,
         })
-        this.instances.winston.log({ level: 'error', message: payload })
     }
 
+    /**
+     * Send log to all enabled services with level of 'fatal'.
+     */
     fatal() {
-        this.entry.level = 'fatal'
-        if (this.config?.traceCaller) {
-            this.entry.caller = this.getCaller()
-        }
-        const payload = JSON.stringify(this.entry)
-        setTimeout(() => {
-            if (this.config?.apm?.enable) {
-                this.instances.apm?.logger.fatal(payload)
-            }
-        }, 0)
-        setTimeout(() => {
-            if (this.config?.fluent?.enable) {
-                this.instances.fluent?.emit(
-                    this.config.serviceName,
-                    this.entry,
-                    Date.now(),
-                )
-            }
-        }, 0)
-        setTimeout(() => {
-            if (this.config?.sentry?.enable) {
-                sentry.captureException(payload)
-            }
-        }, 0)
-        setTimeout(() => {
-            if (this.config?.kafka?.enable) {
-                this.instances.kafka?.send(
-                    [
-                        {
-                            topic: this.config.kafka.topic,
-                            messages: payload,
-                        },
-                    ],
-                    (err) => {
-                        if (this.config?.verbose) {
-                            console.log(err)
-                        }
-                    },
-                )
-            }
+        this.broadCast(this.entry, 'fatal', {
+            apm:
+                this.config?.apm?.enable &&
+                this.levels &&
+                this.levels.apmLevel === 0,
+            fluent:
+                this.config?.fluent?.enable &&
+                this.levels &&
+                this.levels.fluentLevel === 0,
+            kafka:
+                this.config?.kafka?.enable &&
+                this.levels &&
+                this.levels.kafkaLevel === 0,
+            sentry:
+                this.config?.sentry?.enable &&
+                this.levels &&
+                this.levels.sentryLevel === 0,
         })
-        this.instances.winston.log({ level: 'emerg', message: payload })
     }
 }
