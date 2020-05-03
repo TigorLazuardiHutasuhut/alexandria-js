@@ -17,19 +17,63 @@ export interface Instances {
 }
 
 class Alexandria {
-    private config: AlexandriaConfig
+    private config?: AlexandriaConfig
     private instances: Instances
-    private levels: Levels
-    constructor(config: AlexandriaConfig) {
-        this.config = config
+    private levels?: Levels
+    /**
+     * Creates new Alexandria instance. If config is not passed,
+     Alexandria only logs to stdout and also without service identification.
+     *
+     * No need to pass all configurations. Alexandria will only log
+     to services with valid configurations.
+     *
+     * Example Full-Config:
+     * ```typescript
+    const Alexandria = require('alexandria')
+    const env = process.env.NODE_ENV === 'production'
+    const alexa = new Alexandria({
+        serviceName : "Service A", // Required
+        serviceVersion : "1.0.0", // Required
+        serviceEnvironment : process.env.NODE_ENV || "production", // Required
+        sentry: { // Optional
+            enable: env,
+            dsn: 'https://key@sentry.io/service_id',
+            level: 'fatal',
+        },
+        apm: { // Optional
+            enable: env,
+            url: 'http://localhost:8200'
+            level: 'fatal',
+        },
+        fluent: { // Optional
+            enable: env,
+            host: 'localhost',
+            port: '24224',
+            level: 'info',
+        },
+        kafka : { // Optional
+            enable: env,
+            topic: 'some_job',
+            brokers: 'http://localhost:2181', 
+            topicPrefix: new Date(
+                    new Date().getTime() - (new Date().getTimezoneOffset() * 60000)
+                ).toISOString().split('T')[0],
+            topicSuffix: 'log',
+            level: 'info',
+        }, // Generate and log to new topic with format 'yyyy-mm-dd.some_job.log'
+        verbose: false,
+    })  
+     * ```
+     */
+    constructor(config?: AlexandriaConfig) {
         this.instances = {
             winston: winston.createLogger({
                 level: 'info',
                 format: winston.format.json(),
                 defaultMeta: {
-                    name: config.serviceName,
-                    version: config.serviceVersion,
-                    environment: config.serviceEnvironment,
+                    name: config?.serviceName,
+                    version: config?.serviceVersion,
+                    environment: config?.serviceEnvironment,
                 },
                 transports: [
                     new winston.transports.Console({
@@ -38,6 +82,10 @@ class Alexandria {
                 ],
             }),
         }
+        if (typeof config === 'undefined') {
+            return
+        }
+        this.config = config
         if (config.apm?.enable) {
             this.instances.apm = apm.start({
                 serviceName: config.serviceName,
@@ -62,14 +110,14 @@ class Alexandria {
                     timeout: config.fluent.timeout || 3,
                     reconnectInterval:
                         config.fluent.reconnectInterval || 600000,
-                }
+                },
             )
         }
         if (config.kafka?.enable) {
             this.instances.kafka = new kafka.Producer(
                 new KafkaClient({
                     kafkaHost: config.kafka.brokers.join(','),
-                })
+                }),
             )
         }
         this.levels = this.parseLevels()
@@ -79,7 +127,7 @@ class Alexandria {
         let fluentLevel: number
         let kafkaLevel: number
         let sentryLevel: number
-        switch (this.config.apm?.level?.toLowerCase()) {
+        switch (this.config?.apm?.level?.toLowerCase()) {
             case 'debug':
                 apmLevel = 4
                 break
@@ -99,7 +147,7 @@ class Alexandria {
                 apmLevel = 0
                 break
         }
-        switch (this.config.fluent?.level?.toLowerCase()) {
+        switch (this.config?.fluent?.level?.toLowerCase()) {
             case 'debug':
                 fluentLevel = 4
                 break
@@ -119,7 +167,7 @@ class Alexandria {
                 fluentLevel = 3
                 break
         }
-        switch (this.config.kafka?.level?.toLowerCase()) {
+        switch (this.config?.kafka?.level?.toLowerCase()) {
             case 'debug':
                 kafkaLevel = 4
                 break
@@ -139,7 +187,7 @@ class Alexandria {
                 kafkaLevel = 3
                 break
         }
-        switch (this.config.sentry?.level?.toLowerCase()) {
+        switch (this.config?.sentry?.level?.toLowerCase()) {
             case 'debug':
                 sentryLevel = 4
                 break
@@ -169,9 +217,11 @@ class Alexandria {
 
     /**
      * log creates a new entry logging instance.
+     *
      * Please note this does not do anything except creating instance.
-     * log have to be chained with `.info()`, or `.error()` etc to actually do the stuff.
-     * (like printing to stdout).
+     *
+     * log have to be chained with `.info()`, or `.error()`, 
+     etc to actually do the jobs and send log to services.
      *
      * Example:
      * ```typescript
@@ -199,9 +249,9 @@ class Alexandria {
     log(entry: AlexandriaBaseEntry): AlexandriaEntry {
         return new AlexandriaEntry(
             entry,
-            this.config,
             this.instances,
-            this.levels
+            this.config,
+            this.levels,
         )
     }
 }

@@ -18,9 +18,11 @@ export interface AlexandriaConfig {
     apm?: APM
     fluent?: Fluent
     kafka?: Kafka
+    traceCaller?: boolean
     serviceName: string
     serviceVersion: string
     serviceEnvironment: string
+    verbose?: boolean
 }
 
 /**
@@ -38,28 +40,6 @@ export interface Sentry {
      * ```
      */
     dsn: string
-    /**
-     * Any key with string value is valid.
-     * This will be used for tagging services in sentry for easier searching.
-     *
-     * Example:
-     *
-     * ```typescript
-     * {
-     *  // ...
-     *      tags: { "service name": "some service" }
-     *  // ...
-     * {
-     * ```
-     */
-    tags?: { [key: string]: string }
-    /**
-     * Set wether to send stack trace as payload as well. Default `false`.
-     */
-    useStackTrace?: boolean
-    /**
-     * Set on what level will the payload send to senty. Default is `fatal`.
-     */
     level?: 'debug' | 'info' | 'warn' | 'error' | 'fatal'
 }
 
@@ -69,20 +49,12 @@ export interface Sentry {
 export interface APM {
     enable: boolean
     url: string
-    /**
-     * Set wether to send stack trace as payload as well. Default `false`.
-     */
-    useStackTrace?: boolean
-    /**
-     * Set on what level will the <i>automatic</i> payload send to apm. Default is `fatal`.
-     */
     level?: 'debug' | 'info' | 'warn' | 'error' | 'fatal'
     token?: string
 }
 
 export interface Fluent {
     enable?: boolean
-    tag?: string
     host?: string
     port?: number
     timeout?: number

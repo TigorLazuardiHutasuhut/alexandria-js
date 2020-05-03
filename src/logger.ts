@@ -10,31 +10,41 @@ export interface AlexandriaBaseEntry {
 }
 
 interface Entry {
-    caller: string | undefined
+    caller?: string
     time: string
     level: 'debug' | 'info' | 'warn' | 'error' | 'fatal' | null
-    data: any | null
-    code: number
-    error: Error | null
-    message: string | null
+    data?: any | null
+    code?: number
+    error?: Error | null
+    message?: string | null
 }
 
 export class AlexandriaEntry {
     private entry: Entry
     constructor(
         baseEntry: AlexandriaBaseEntry,
-        private config: AlexandriaConfig,
         private instances: Instances,
-        private levels: Levels,
+        private config?: AlexandriaConfig,
+        private levels?: Levels,
     ) {
-        this.entry = {
-            time: new Date().toISOString(),
-            level: null,
-            code: baseEntry.code ? baseEntry.code : 5500,
-            data: baseEntry.data ? baseEntry.data : null,
-            error: baseEntry.error ? baseEntry.error : null,
-            message: baseEntry.message ? baseEntry.message : null,
-            caller: this.getCaller(),
+        if (typeof baseEntry === 'undefined') {
+            this.entry = {
+                time: new Date().toISOString(),
+                level: null,
+                code: undefined,
+                data: undefined,
+                error: undefined,
+                message: undefined,
+            }
+        } else {
+            this.entry = {
+                time: new Date().toISOString(),
+                level: null,
+                code: baseEntry.code ? baseEntry.code : 5500,
+                data: baseEntry.data ? baseEntry.data : null,
+                error: baseEntry.error ? baseEntry.error : null,
+                message: baseEntry.message ? baseEntry.message : null,
+            }
         }
         this.config = config
         this.instances = instances
@@ -51,14 +61,17 @@ export class AlexandriaEntry {
 
     debug() {
         this.entry.level = 'debug'
+        if (this.config?.traceCaller) {
+            this.entry.caller = this.getCaller()
+        }
         const payload = JSON.stringify(this.entry)
         setTimeout(() => {
-            if (this.config.apm?.enable) {
+            if (this.config?.apm?.enable) {
                 this.instances.apm?.logger.debug(payload)
             }
         }, 0)
         setTimeout(() => {
-            if (this.config.fluent?.enable) {
+            if (this.config?.fluent?.enable) {
                 this.instances.fluent?.emit(
                     this.config.serviceName,
                     this.entry,
@@ -67,12 +80,12 @@ export class AlexandriaEntry {
             }
         }, 0)
         setTimeout(() => {
-            if (this.config.sentry?.enable) {
+            if (this.config?.sentry?.enable) {
                 sentry.captureMessage(payload)
             }
         }, 0)
         setTimeout(() => {
-            if (this.config.kafka?.enable) {
+            if (this.config?.kafka?.enable) {
                 this.instances.kafka?.send(
                     [
                         {
@@ -91,30 +104,50 @@ export class AlexandriaEntry {
         this.entry.level = 'info'
         const payload = JSON.stringify(this.entry)
         setTimeout(() => {
-            if (this.config.apm?.enable && this.levels.apmLevel < 4) {
+            if (
+                this.config?.apm?.enable && this.levels?.apmLevel
+                    ? this.levels.apmLevel < 4
+                    : false
+            ) {
                 this.instances.apm?.logger.info(payload)
             }
         }, 0)
         setTimeout(() => {
-            if (this.config.fluent?.enable && this.levels.fluentLevel < 4) {
+            if (
+                this.config?.fluent?.enable && this.levels?.fluentLevel
+                    ? this.levels.fluentLevel < 4
+                    : false
+            ) {
                 this.instances.fluent?.emit(
-                    this.config.serviceName,
+                    this.config?.serviceName || '',
                     this.entry,
                     Date.now(),
                 )
             }
         }, 0)
         setTimeout(() => {
-            if (this.config.sentry?.enable && this.levels.sentryLevel < 4) {
+            if (
+                this.config?.sentry?.enable && this.levels?.sentryLevel
+                    ? this.levels.sentryLevel < 4
+                    : false
+            ) {
                 sentry.captureMessage(payload)
             }
         }, 0)
         setTimeout(() => {
-            if (this.config.kafka?.enable && this.levels.kafkaLevel < 4) {
+            if (
+                this.config?.kafka?.enable && this.levels?.kafkaLevel
+                    ? this.levels.kafkaLevel < 4
+                    : false
+            ) {
                 this.instances.kafka?.send(
                     [
                         {
-                            topic: this.config.kafka.topic,
+                            topic: [
+                                this.config!.kafka!.topicPrefix,
+                                this.config!.kafka!.topic,
+                                this.config!.kafka!.topicSuffix,
+                            ].join('.'),
                             messages: payload,
                         },
                     ],
