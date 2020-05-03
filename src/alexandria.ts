@@ -17,8 +17,17 @@ export interface Instances {
 }
 
 class Alexandria {
+    /**
+     * property which holds all the config
+     */
     private config?: AlexandriaConfig
+    /**
+     * instances holds the initialized instances for logging.
+     */
     private instances: Instances
+    /**
+     * levels is an object with levels parsed from string to int.
+     */
     private levels?: Levels
     /**
      * Creates new Alexandria instance. If config is not passed,
@@ -62,6 +71,8 @@ class Alexandria {
      *         level: 'info',
      *     }, // Generate and log to new topic with format 'yyyy-mm-dd.some_job.log'
      *     verbose: false,
+     *     monitorUncaughtException: true,
+     *     monitorUncaughtExceptionDelay: 30000,
      * })
      * ```
      */
