@@ -22,47 +22,47 @@ class Alexandria {
     private levels?: Levels
     /**
      * Creates new Alexandria instance. If config is not passed,
-     Alexandria only logs to stdout and also without service identification.
+     * Alexandria only logs to stdout and also without service identification.
      *
      * No need to pass all configurations. Alexandria will only log
-     to services with valid configurations.
+     * to services with valid configurations.
      *
      * Example Full-Config:
      * ```typescript
-    const Alexandria = require('alexandria')
-    const env = process.env.NODE_ENV === 'production'
-    const alexa = new Alexandria({
-        serviceName : "Service A", // Required
-        serviceVersion : "1.0.0", // Required
-        serviceEnvironment : process.env.NODE_ENV || "production", // Required
-        sentry: { // Optional
-            enable: env,
-            dsn: 'https://key@sentry.io/service_id',
-            level: 'fatal',
-        },
-        apm: { // Optional
-            enable: env,
-            url: 'http://localhost:8200'
-            level: 'fatal',
-        },
-        fluent: { // Optional
-            enable: env,
-            host: 'localhost',
-            port: '24224',
-            level: 'info',
-        },
-        kafka : { // Optional
-            enable: env,
-            topic: 'some_job',
-            brokers: 'http://localhost:2181', 
-            topicPrefix: new Date(
-                    new Date().getTime() - (new Date().getTimezoneOffset() * 60000)
-                ).toISOString().split('T')[0],
-            topicSuffix: 'log',
-            level: 'info',
-        }, // Generate and log to new topic with format 'yyyy-mm-dd.some_job.log'
-        verbose: false,
-    })  
+     * const Alexandria = require('alexandria')
+     * const env = process.env.NODE_ENV === 'production'
+     * const alexa = new Alexandria({
+     *     serviceName : "Service A", // Required
+     *     serviceVersion : "1.0.0", // Required
+     *     serviceEnvironment : process.env.NODE_ENV || "production", // Required
+     *     sentry: { // Optional
+     *         enable: env,
+     *         dsn: 'https://key@sentry.io/service_id',
+     *         level: 'fatal',
+     *     },
+     *     apm: { // Optional
+     *         enable: env,
+     *         url: 'http://localhost:8200'
+     *         level: 'fatal',
+     *     },
+     *     fluent: { // Optional
+     *         enable: env,
+     *         host: 'localhost',
+     *         port: '24224',
+     *         level: 'info',
+     *     },
+     *     kafka : { // Optional
+     *         enable: env,
+     *         topic: 'some_job',
+     *         brokers: 'http://localhost:2181',
+     *         topicPrefix: new Date(
+     *                 new Date().getTime() - (new Date().getTimezoneOffset() * 60000)
+     *             ).toISOString().split('T')[0],
+     *         topicSuffix: 'log',
+     *         level: 'info',
+     *     }, // Generate and log to new topic with format 'yyyy-mm-dd.some_job.log'
+     *     verbose: false,
+     * })
      * ```
      */
     constructor(config?: AlexandriaConfig) {
