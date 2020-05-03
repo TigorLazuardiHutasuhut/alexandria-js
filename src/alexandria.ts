@@ -5,7 +5,7 @@ import apm from 'elastic-apm-node/start'
 import agent from 'elastic-apm-node/index'
 import fluent, { FluentSender } from 'fluent-logger'
 import kafka, { KafkaClient, Producer as KafkaProducer } from 'kafka-node'
-import { AlexandriaBaseEntry, AlexandriaEntry } from './logger'
+import { AlexandriaBaseEntry, AlexandriaEntry, Entry } from './logger'
 
 export type APMAgent = typeof agent
 
@@ -81,6 +81,30 @@ class Alexandria {
                     }),
                 ],
             }),
+        }
+        if (this.config?.monitorUncaughtException !== false) {
+            setTimeout(() => {
+                ;(process as NodeJS.EventEmitter).on(
+                    'uncaughtExceptionMonitor',
+                    (err: Error, origin: string) => {
+                        const entry: Entry = {
+                            level: 'fatal',
+                            time: new Date().toISOString(),
+                            code: 5500,
+                            error: err,
+                            caller: origin,
+                            data: null,
+                            message:
+                                'Uncaught Exception captured by Alexandria',
+                        }
+                        const message = JSON.stringify(entry)
+                        this.instances.winston.log({ level: 'fatal', message })
+                        this.instances.apm?.captureError(message)
+                        this.config?.sentry?.enable &&
+                            sentry.captureException(message)
+                    },
+                )
+            }, this.config?.monitorUncaughtExceptionDelay || 30000)
         }
         if (typeof config === 'undefined') {
             return

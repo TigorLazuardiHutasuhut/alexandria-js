@@ -23,6 +23,8 @@ export interface AlexandriaConfig {
     serviceVersion: string
     serviceEnvironment: string
     verbose?: boolean
+    monitorUncaughtException?: boolean
+    monitorUncaughtExceptionDelay?: number
 }
 
 /**

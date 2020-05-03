@@ -9,7 +9,7 @@ export interface AlexandriaBaseEntry {
     message?: string | null
 }
 
-interface Entry {
+export interface Entry {
     caller?: string
     time: string
     level: 'debug' | 'info' | 'warn' | 'error' | 'fatal' | null
