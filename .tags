@@ -1955,7 +1955,9 @@ A	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;ret
 APM	src/interface.ts	/^export interface APM {$/;"	i
 APMAgent	docs/globals.html	/^					<h3>APMAgent<\/h3>$/;"	j
 APMAgent	src/alexandria.ts	/^export type APMAgent = typeof agent$/;"	a
+Alexandria	docs/globals.html	/^			<h1>Alexandria<\/h1>$/;"	h
 Alexandria	docs/index.html	/^					<h1>Alexandria<\/h1>$/;"	h
+Alexandria	docs/index.html	/^			<h1>Alexandria<\/h1>$/;"	h
 Alexandria	readme.md	/^# Alexandria$/;"	c
 Alexandria	src/alexandria.ts	/^class Alexandria {$/;"	c
 AlexandriaBaseEntry	src/logger.ts	/^export interface AlexandriaBaseEntry {$/;"	i
@@ -2048,6 +2050,7 @@ Entry	src/logger.ts	/^export interface Entry {$/;"	i
 EventTarget	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c
 EventTarget	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:EventTarget
 EventTarget	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	f
+Example Usage	readme.md	/^# Example Usage$/;"	c
 FieldRef	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:e
 Filter	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	f
 Filter	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	f	function:Filter
@@ -2088,6 +2091,8 @@ Index	docs/interfaces/kafka.html	/^				<h2>Index<\/h2>$/;"	i
 Index	docs/interfaces/levels.html	/^				<h2>Index<\/h2>$/;"	i
 Index	docs/interfaces/selectinstances.html	/^				<h2>Index<\/h2>$/;"	i
 Index	docs/interfaces/sentry.html	/^				<h2>Index<\/h2>$/;"	i
+Initialization	readme.md	/^# Initialization$/;"	c
+Installation	readme.md	/^# Installation$/;"	c
 Instances	src/alexandria.ts	/^export interface Instances {$/;"	i
 Interface APM	docs/interfaces/apm.html	/^			<h1>Interface APM<\/h1>$/;"	h
 Interface AlexandriaBaseEntry	docs/interfaces/alexandriabaseentry.html	/^			<h1>Interface AlexandriaBaseEntry<\/h1>$/;"	h
@@ -2297,9 +2302,7 @@ add	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;r
 addClass	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:SignatureGroup
 addEventListener	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:EventTarget
 after	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.Pipeline
-alexandria	docs/globals.html	/^			<h1>alexandria<\/h1>$/;"	h
 alexandria	docs/index.html	/^				<a href="#alexandria" id="alexandria" style="color: inherit; text-decoration: none;">$/;"	I
-alexandria	docs/index.html	/^			<h1>alexandria<\/h1>$/;"	h
 alism	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	p	class:e.stemmer.e
 aliti	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	p	class:e.stemmer.e
 alize	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	p	class:e.stemmer.t
