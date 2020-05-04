@@ -21,6 +21,7 @@
 @types/node	package.json	/^        "@types\/node": "^13.13.4",$/;"	s	object:devDependencies
 APM	src/interface.ts	/^export interface APM {$/;"	i
 APMAgent	src/alexandria.ts	/^export type APMAgent = typeof agent$/;"	a
+Alexandria	readme.md	/^# Alexandria$/;"	c
 Alexandria	src/alexandria.ts	/^class Alexandria {$/;"	c
 AlexandriaBaseEntry	src/logger.ts	/^export interface AlexandriaBaseEntry {$/;"	i
 AlexandriaConfig	src/interface.ts	/^export interface AlexandriaConfig {$/;"	i
@@ -54,7 +55,7 @@ declaration	tsconfig.json	/^        "declaration": true,$/;"	b	object:compilerOp
 dependencies	package.json	/^    "dependencies": {$/;"	o
 description	package.json	/^    "description": "Unified Logger Module for Bareksa Typescript\/Javascript",$/;"	s
 devDependencies	package.json	/^    "devDependencies": {$/;"	o
-doc	package.json	/^        "doc": "typedoc --out doc src"$/;"	s	object:scripts
+doc	package.json	/^        "doc": "typedoc --out docs src"$/;"	s	object:scripts
 dsn	src/interface.ts	/^    dsn: string$/;"	p	interface:Sentry
 elastic-apm-node	package.json	/^        "elastic-apm-node": "^3.5.0",$/;"	s	object:dependencies
 enable	src/interface.ts	/^    enable: boolean$/;"	p	interface:APM
