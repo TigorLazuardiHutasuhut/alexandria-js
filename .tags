@@ -6,18 +6,19 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
-0	package.json	/^    "dist\/**\/*"$/;"	s	array:files
-0	package.json	/^    "logger",$/;"	s	array:keywords
+0	package.json	/^        "dist\/**\/*"$/;"	s	array:files
+0	package.json	/^        "doc"$/;"	s	array:pre-commit
+0	package.json	/^        "logger",$/;"	s	array:keywords
 0	tsconfig.json	/^    "exclude": ["node_modules", "**\/__tests__\/**"]$/;"	s	array:exclude
 0	tsconfig.json	/^    "include": ["src"],$/;"	s	array:include
-1	package.json	/^    "winston",$/;"	s	array:keywords
+1	package.json	/^        "winston",$/;"	s	array:keywords
 1	tsconfig.json	/^    "exclude": ["node_modules", "**\/__tests__\/**"]$/;"	s	array:exclude
-2	package.json	/^    "apm",$/;"	s	array:keywords
-3	package.json	/^    "kafka",$/;"	s	array:keywords
-4	package.json	/^    "sentry",$/;"	s	array:keywords
-5	package.json	/^    "fluent"$/;"	s	array:keywords
-@sentry/node	package.json	/^    "@sentry\/node": "^5.15.5",$/;"	s	object:dependencies
-@types/node	package.json	/^    "@types\/node": "^13.13.4",$/;"	s	object:devDependencies
+2	package.json	/^        "apm",$/;"	s	array:keywords
+3	package.json	/^        "kafka",$/;"	s	array:keywords
+4	package.json	/^        "sentry",$/;"	s	array:keywords
+5	package.json	/^        "fluent"$/;"	s	array:keywords
+@sentry/node	package.json	/^        "@sentry\/node": "^5.15.5",$/;"	s	object:dependencies
+@types/node	package.json	/^        "@types\/node": "^13.13.4",$/;"	s	object:devDependencies
 APM	src/interface.ts	/^export interface APM {$/;"	i
 APMAgent	src/alexandria.ts	/^export type APMAgent = typeof agent$/;"	a
 Alexandria	src/alexandria.ts	/^class Alexandria {$/;"	c
@@ -36,10 +37,10 @@ apm	src/interface.ts	/^    apm?: APM$/;"	p	interface:AlexandriaConfig
 apm	src/logger.ts	/^    apm: boolean | undefined$/;"	p	interface:SelectInstances
 apmLevel	src/alexandria.ts	/^        let apmLevel: number$/;"	v
 apmLevel	src/interface.ts	/^    apmLevel: number$/;"	p	interface:Levels
-author	package.json	/^  "author": "Tigor Hutasuhut",$/;"	s
+author	package.json	/^    "author": "Tigor Hutasuhut",$/;"	s
 broadCast	src/logger.ts	/^    private broadCast($/;"	m	class:AlexandriaEntry
 brokers	src/interface.ts	/^    brokers: string[]$/;"	p	interface:Kafka
-build	package.json	/^    "build": "tsc"$/;"	s	object:scripts
+build	package.json	/^        "build": "tsc",$/;"	s	object:scripts
 caller	src/logger.ts	/^    caller?: string$/;"	p	interface:Entry
 code	src/logger.ts	/^    code?: number$/;"	p	interface:AlexandriaBaseEntry
 code	src/logger.ts	/^    code?: number$/;"	p	interface:Entry
@@ -50,11 +51,12 @@ data	src/logger.ts	/^    data?: any | null$/;"	p	interface:AlexandriaBaseEntry
 data	src/logger.ts	/^    data?: any | null$/;"	p	interface:Entry
 debug	src/logger.ts	/^    debug() {$/;"	m	class:AlexandriaEntry
 declaration	tsconfig.json	/^        "declaration": true,$/;"	b	object:compilerOptions
-dependencies	package.json	/^  "dependencies": {$/;"	o
-description	package.json	/^  "description": "Unified Logger Module for Bareksa Typescript\/Javascript",$/;"	s
-devDependencies	package.json	/^  "devDependencies": {$/;"	o
+dependencies	package.json	/^    "dependencies": {$/;"	o
+description	package.json	/^    "description": "Unified Logger Module for Bareksa Typescript\/Javascript",$/;"	s
+devDependencies	package.json	/^    "devDependencies": {$/;"	o
+doc	package.json	/^        "doc": "typedoc --out doc src"$/;"	s	object:scripts
 dsn	src/interface.ts	/^    dsn: string$/;"	p	interface:Sentry
-elastic-apm-node	package.json	/^    "elastic-apm-node": "^3.5.0",$/;"	s	object:dependencies
+elastic-apm-node	package.json	/^        "elastic-apm-node": "^3.5.0",$/;"	s	object:dependencies
 enable	src/interface.ts	/^    enable: boolean$/;"	p	interface:APM
 enable	src/interface.ts	/^    enable: boolean$/;"	p	interface:Kafka
 enable	src/interface.ts	/^    enable: boolean$/;"	p	interface:Sentry
@@ -67,34 +69,35 @@ error	src/logger.ts	/^    error?: Error | null$/;"	p	interface:Entry
 esModuleInterop	tsconfig.json	/^        "esModuleInterop": true$/;"	b	object:compilerOptions
 exclude	tsconfig.json	/^    "exclude": ["node_modules", "**\/__tests__\/**"]$/;"	a
 fatal	src/logger.ts	/^    fatal() {$/;"	m	class:AlexandriaEntry
-files	package.json	/^  "files": [$/;"	a
+files	package.json	/^    "files": [$/;"	a
 fluent	src/alexandria.ts	/^    fluent?: FluentSender<any>$/;"	p	interface:Instances
 fluent	src/interface.ts	/^    fluent?: Fluent$/;"	p	interface:AlexandriaConfig
 fluent	src/logger.ts	/^    fluent: boolean | undefined$/;"	p	interface:SelectInstances
-fluent-logger	package.json	/^    "fluent-logger": "^3.4.1",$/;"	s	object:dependencies
+fluent-logger	package.json	/^        "fluent-logger": "^3.4.1",$/;"	s	object:dependencies
 fluentLevel	src/alexandria.ts	/^        let fluentLevel: number$/;"	v
 fluentLevel	src/interface.ts	/^    fluentLevel: number$/;"	p	interface:Levels
 getCaller	src/logger.ts	/^    private getCaller(index = 4): string | undefined {$/;"	m	class:AlexandriaEntry
 handleKafkaError	src/logger.ts	/^    private handleKafkaError(err: any) {$/;"	m	class:AlexandriaEntry
 host	src/interface.ts	/^    host?: string$/;"	p	interface:Fluent
+i	package.json	/^        "i": "^0.3.6",$/;"	s	object:devDependencies
 include	tsconfig.json	/^    "include": ["src"],$/;"	a
 info	src/logger.ts	/^    info() {$/;"	m	class:AlexandriaEntry
 instances	src/logger.ts	/^        private instances: Instances,$/;"	p	class:AlexandriaEntry
 kafka	src/alexandria.ts	/^    kafka?: KafkaProducer$/;"	p	interface:Instances
 kafka	src/interface.ts	/^    kafka?: Kafka$/;"	p	interface:AlexandriaConfig
 kafka	src/logger.ts	/^    kafka: boolean | undefined$/;"	p	interface:SelectInstances
-kafka-node	package.json	/^    "kafka-node": "^5.0.0",$/;"	s	object:dependencies
+kafka-node	package.json	/^        "kafka-node": "^5.0.0",$/;"	s	object:dependencies
 kafkaLevel	src/alexandria.ts	/^        let kafkaLevel: number$/;"	v
 kafkaLevel	src/interface.ts	/^    kafkaLevel: number$/;"	p	interface:Levels
-keywords	package.json	/^  "keywords": [$/;"	a
+keywords	package.json	/^    "keywords": [$/;"	a
 level	src/interface.ts	/^    level?: 'debug' | 'info' | 'warn' | 'error' | 'fatal'$/;"	p	interface:APM
 level	src/interface.ts	/^    level?: 'debug' | 'info' | 'warn' | 'error' | 'fatal'$/;"	p	interface:Fluent
 level	src/interface.ts	/^    level?: 'debug' | 'info' | 'warn' | 'error' | 'fatal'$/;"	p	interface:Kafka
 level	src/interface.ts	/^    level?: 'debug' | 'info' | 'warn' | 'error' | 'fatal'$/;"	p	interface:Sentry
 level	src/logger.ts	/^    level: 'debug' | 'info' | 'warn' | 'error' | 'fatal' | null$/;"	p	interface:Entry
 levels	src/logger.ts	/^        private levels: Levels,$/;"	p	class:AlexandriaEntry
-license	package.json	/^  "license": "ISC",$/;"	s
-main	package.json	/^  "main": "dist\/index.js",$/;"	s
+license	package.json	/^    "license": "ISC",$/;"	s
+main	package.json	/^    "main": "dist\/index.js",$/;"	s
 message	src/alexandria.ts	/^                        const message = JSON.stringify(entry)$/;"	C
 message	src/logger.ts	/^        const message = JSON.stringify(payload)$/;"	C	method:AlexandriaEntry.handleKafkaError
 message	src/logger.ts	/^    message?: string | null$/;"	p	interface:AlexandriaBaseEntry
@@ -103,13 +106,18 @@ module	tsconfig.json	/^        "module": "CommonJS",$/;"	s	object:compilerOption
 moduleResolution	tsconfig.json	/^        "moduleResolution": "Node",$/;"	s	object:compilerOptions
 monitorUncaughtException	src/interface.ts	/^    monitorUncaughtException?: boolean$/;"	p	interface:AlexandriaConfig
 monitorUncaughtExceptionDelay	src/interface.ts	/^    monitorUncaughtExceptionDelay?: number$/;"	p	interface:AlexandriaConfig
-name	package.json	/^  "name": "alexandria",$/;"	s
+name	package.json	/^    "name": "alexandria",$/;"	s
+npm	package.json	/^        "npm": "^6.14.4",$/;"	s	object:devDependencies
 outDir	tsconfig.json	/^        "outDir": ".\/dist",$/;"	s	object:compilerOptions
+panic	src/logger.ts	/^    panic = this.fatal$/;"	p	class:AlexandriaEntry
 payload	src/logger.ts	/^        const payload = JSON.stringify(entry)$/;"	C	method:AlexandriaEntry.broadCast
 payload	src/logger.ts	/^        const payload: Entry = {$/;"	C	method:AlexandriaEntry.handleKafkaError
 port	src/interface.ts	/^    port?: number$/;"	p	interface:Fluent
+pre-commit	package.json	/^        "pre-commit": "^1.2.2",$/;"	s	object:devDependencies
+pre-commit	package.json	/^    "pre-commit": [$/;"	a
+print	src/logger.ts	/^    print = this.info$/;"	p	class:AlexandriaEntry
 reconnectInterval	src/interface.ts	/^    reconnectInterval?: number$/;"	p	interface:Fluent
-scripts	package.json	/^  "scripts": {$/;"	o
+scripts	package.json	/^    "scripts": {$/;"	o
 sentry	src/interface.ts	/^    sentry?: Sentry$/;"	p	interface:AlexandriaConfig
 sentry	src/logger.ts	/^    sentry: boolean | undefined$/;"	p	interface:SelectInstances
 sentryLevel	src/alexandria.ts	/^        let sentryLevel: number$/;"	v
@@ -119,7 +127,7 @@ serviceName	src/interface.ts	/^    serviceName: string$/;"	p	interface:Alexandri
 serviceVersion	src/interface.ts	/^    serviceVersion: string$/;"	p	interface:AlexandriaConfig
 strict	tsconfig.json	/^        "strict": true,$/;"	b	object:compilerOptions
 target	tsconfig.json	/^        "target": "ES5",$/;"	s	object:compilerOptions
-test	package.json	/^    "test": "npm run test",$/;"	s	object:scripts
+test	package.json	/^        "test": "npm run test",$/;"	s	object:scripts
 time	src/logger.ts	/^    time: string$/;"	p	interface:Entry
 timeout	src/interface.ts	/^    timeout?: number$/;"	p	interface:Fluent
 token	src/interface.ts	/^    token?: string$/;"	p	interface:APM
@@ -127,10 +135,11 @@ topic	src/interface.ts	/^    topic: string$/;"	p	interface:Kafka
 topicPrefix	src/interface.ts	/^    topicPrefix?: string$/;"	p	interface:Kafka
 topicSuffix	src/interface.ts	/^    topicSuffix?: string$/;"	p	interface:Kafka
 traceCaller	src/interface.ts	/^    traceCaller?: boolean$/;"	p	interface:AlexandriaConfig
-typescript	package.json	/^    "typescript": "^3.8.3"$/;"	s	object:devDependencies
+typedoc	package.json	/^        "typedoc": "^0.17.6",$/;"	s	object:devDependencies
+typescript	package.json	/^        "typescript": "^3.8.3"$/;"	s	object:devDependencies
 url	src/interface.ts	/^    url: string$/;"	p	interface:APM
 verbose	src/interface.ts	/^    verbose?: boolean$/;"	p	interface:AlexandriaConfig
-version	package.json	/^  "version": "1.0.0",$/;"	s
+version	package.json	/^    "version": "1.0.0",$/;"	s
 warn	src/logger.ts	/^    warn() {$/;"	m	class:AlexandriaEntry
-winston	package.json	/^    "winston": "^3.2.1"$/;"	s	object:dependencies
+winston	package.json	/^        "winston": "^3.2.1"$/;"	s	object:dependencies
 winston	src/alexandria.ts	/^    winston: Winston$/;"	p	interface:Instances

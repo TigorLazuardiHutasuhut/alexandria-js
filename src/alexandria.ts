@@ -36,6 +36,8 @@ class Alexandria {
      * Creates new Alexandria instance. If config is not passed,
      * Alexandria only logs to stdout and also without service identification.
      *
+     * @remarks
+     *
      * No need to pass all configurations. Alexandria will only log
      * to services with valid configurations.
      *
@@ -256,8 +258,10 @@ class Alexandria {
      *
      * Please note this does not do anything except creating instance.
      *
-     * log have to be chained with `.info()`, or `.error()`, 
-     etc to actually do the jobs and send log to services.
+     * log have to be chained with `.info()`, or `.error()`,
+     * etc to actually do the jobs and send log to services.
+     *
+     * @remarks
      *
      * Example:
      * ```typescript

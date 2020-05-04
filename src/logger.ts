@@ -166,6 +166,11 @@ export class AlexandriaEntry {
     }
 
     /**
+     * Send log to all enabled services with level of 'info' or below.
+     */
+    print = this.info
+
+    /**
      * Send log to all enabled services with level of 'warn' or below.
      */
     warn() {
@@ -202,4 +207,9 @@ export class AlexandriaEntry {
                 this.config?.sentry?.enable && this.levels.sentryLevel === 0,
         })
     }
+
+    /**
+     * Send log to all enabled services with level of 'fatal'.
+     */
+    panic = this.fatal
 }
