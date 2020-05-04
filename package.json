@@ -3,13 +3,14 @@
     "version": "1.0.0",
     "description": "Unified Logger Module for Bareksa Typescript/Javascript",
     "main": "dist/index.js",
+    "homepage": "https://tigorlazuardihutasuhut.github.io/alexandria-js/",
     "files": [
         "dist/**/*"
     ],
     "scripts": {
         "test": "npm run test",
         "build": "tsc",
-        "doc": "typedoc --out docs src"
+        "doc": "typedoc --out docs --mode file --name Alexandria src"
     },
     "keywords": [
         "logger",
