@@ -114,7 +114,6 @@ panic	src/logger.ts	/^    panic = this.fatal$/;"	p	class:AlexandriaEntry
 payload	src/logger.ts	/^        const payload = JSON.stringify(entry)$/;"	C	method:AlexandriaEntry.broadCast
 payload	src/logger.ts	/^        const payload: Entry = {$/;"	C	method:AlexandriaEntry.handleKafkaError
 port	src/interface.ts	/^    port?: number$/;"	p	interface:Fluent
-pre-commit	package.json	/^        "pre-commit": "^1.2.2",$/;"	s	object:devDependencies
 pre-commit	package.json	/^    "pre-commit": [$/;"	a
 print	src/logger.ts	/^    print = this.info$/;"	p	class:AlexandriaEntry
 reconnectInterval	src/interface.ts	/^    reconnectInterval?: number$/;"	p	interface:Fluent
