@@ -1065,7 +1065,6 @@
 0	docs/assets/js/search.json	/^{"kinds":{"128":"Class","256":"Interface","512":"Constructor","1024":"Property","2048":"Method",/;"	s	array:index.invertedIndex.8
 0	docs/assets/js/search.json	/^{"kinds":{"128":"Class","256":"Interface","512":"Constructor","1024":"Property","2048":"Method",/;"	s	array:index.invertedIndex.9
 0	package.json	/^        "dist\/**\/*"$/;"	s	array:files
-0	package.json	/^        "doc"$/;"	s	array:pre-commit
 0	package.json	/^        "logger",$/;"	s	array:keywords
 0	tsconfig.json	/^    "exclude": ["node_modules", "**\/__tests__\/**"],$/;"	s	array:exclude
 0	tsconfig.json	/^    "include": ["src"],$/;"	s	array:include
@@ -2499,7 +2498,7 @@ dl.tsd-comment-tags dd:after	docs/assets/css/main.css	/^dl.tsd-comment-tags dd:b
 dl.tsd-comment-tags dd:before	docs/assets/css/main.css	/^dl.tsd-comment-tags dd:before, dl.tsd-comment-tags dd:after {$/;"	s
 dl.tsd-comment-tags dt	docs/assets/css/main.css	/^dl.tsd-comment-tags dt {$/;"	s
 dl.tsd-comment-tags p	docs/assets/css/main.css	/^dl.tsd-comment-tags p {$/;"	s
-doc	package.json	/^        "doc": "typedoc --out docs --mode file --name Alexandria src"$/;"	s	object:scripts
+doc	package.json	/^        "doc": "typedoc --out docs --mode file --name Alexandria src",$/;"	s	object:scripts
 dot	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.Vector
 dsn	docs/interfaces/sentry.html	/^					<a name="dsn" class="tsd-anchor"><\/a>$/;"	a
 dsn	docs/interfaces/sentry.html	/^					<h3>dsn<\/h3>$/;"	j
@@ -2753,6 +2752,7 @@ input[type=search] ::-webkit-search-decoration	docs/assets/css/main.css	/^input[
 input[type=submit]	docs/assets/css/main.css	/^input[type=reset], input[type=submit] {$/;"	s
 insert	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.TokenSet.Builder
 insert	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.Vector
+install	package.json	/^        "install": "npm run build"$/;"	s	object:scripts
 instances	docs/classes/alexandria.html	/^					<a name="instances" class="tsd-anchor"><\/a>$/;"	a
 instances	docs/classes/alexandriaentry.html	/^					<a name="instances" class="tsd-anchor"><\/a>$/;"	a
 instances	src/logger.ts	/^        private instances: Instances,$/;"	p	class:AlexandriaEntry
@@ -3243,7 +3243,6 @@ pre	docs/assets/css/main.css	/^code, pre {$/;"	s
 pre	docs/assets/css/main.css	/^p, pre {$/;"	s
 pre	docs/assets/css/main.css	/^pre {$/;"	s
 pre code	docs/assets/css/main.css	/^pre code {$/;"	s
-pre-commit	package.json	/^    "pre-commit": [$/;"	a
 presence	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:e.Query
 print	docs/classes/alexandriaentry.html	/^					<a name="print" class="tsd-anchor"><\/a>$/;"	a
 print	docs/classes/alexandriaentry.html	/^					<h3>print<\/h3>$/;"	j
