@@ -33,12 +33,9 @@ export interface AlexandriaConfig {
 export interface Sentry {
     enable: boolean
     /**
-     * Sentry dsn.
-     *
-     * Example:
-     *
+     * Sentry dsn. Example:
      * ```
-     * dsn: "https://[sentry key]@sentry.io/[sentry service id]"
+     * dsn: "https://key@sentry.io/service_id"
      * ```
      */
     dsn: string

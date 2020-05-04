@@ -29,7 +29,7 @@ Fluent	src/interface.ts	/^export interface Fluent {$/;"	i
 Instances	src/alexandria.ts	/^export interface Instances {$/;"	i
 Kafka	src/interface.ts	/^export interface Kafka {$/;"	i
 Levels	src/interface.ts	/^export interface Levels {$/;"	i
-SelectInstances	src/logger.ts	/^interface SelectInstances {$/;"	i
+SelectInstances	src/logger.ts	/^export interface SelectInstances {$/;"	i
 Sentry	src/interface.ts	/^export interface Sentry {$/;"	i
 apm	src/alexandria.ts	/^    apm?: APMAgent$/;"	p	interface:Instances
 apm	src/interface.ts	/^    apm?: APM$/;"	p	interface:AlexandriaConfig
@@ -92,6 +92,7 @@ level	src/interface.ts	/^    level?: 'debug' | 'info' | 'warn' | 'error' | 'fata
 level	src/interface.ts	/^    level?: 'debug' | 'info' | 'warn' | 'error' | 'fatal'$/;"	p	interface:Kafka
 level	src/interface.ts	/^    level?: 'debug' | 'info' | 'warn' | 'error' | 'fatal'$/;"	p	interface:Sentry
 level	src/logger.ts	/^    level: 'debug' | 'info' | 'warn' | 'error' | 'fatal' | null$/;"	p	interface:Entry
+levels	src/logger.ts	/^        private levels: Levels,$/;"	p	class:AlexandriaEntry
 license	package.json	/^  "license": "ISC",$/;"	s
 main	package.json	/^  "main": "dist\/index.js",$/;"	s
 message	src/alexandria.ts	/^                        const message = JSON.stringify(entry)$/;"	C

@@ -19,7 +19,7 @@ export interface Entry {
     message?: string | null
 }
 
-interface SelectInstances {
+export interface SelectInstances {
     apm: boolean | undefined
     sentry: boolean | undefined
     fluent: boolean | undefined
@@ -31,8 +31,8 @@ export class AlexandriaEntry {
     constructor(
         baseEntry: AlexandriaBaseEntry,
         private instances: Instances,
+        private levels: Levels,
         private config?: AlexandriaConfig,
-        private levels?: Levels,
     ) {
         if (typeof baseEntry === 'undefined') {
             this.entry = {
@@ -66,6 +66,7 @@ export class AlexandriaEntry {
         return err.stack?.split('\n')[index]
     }
 
+    /** Handling Kafka Error */
     private handleKafkaError(err: any) {
         const payload: Entry = {
             code: 5500,
@@ -94,6 +95,7 @@ export class AlexandriaEntry {
         }
     }
 
+    /** sends logs to enabled services and print to stdout */
     private broadCast(
         entry: Entry,
         level: 'debug' | 'info' | 'warn' | 'error' | 'fatal',
@@ -156,22 +158,10 @@ export class AlexandriaEntry {
      */
     info() {
         this.broadCast(this.entry, 'info', {
-            apm:
-                this.config?.apm?.enable &&
-                this.levels &&
-                this.levels.apmLevel <= 3,
-            fluent:
-                this.config?.fluent?.enable &&
-                this.levels &&
-                this.levels.fluentLevel <= 3,
-            kafka:
-                this.config?.kafka?.enable &&
-                this.levels &&
-                this.levels.kafkaLevel <= 3,
-            sentry:
-                this.config?.sentry?.enable &&
-                this.levels &&
-                this.levels.sentryLevel <= 3,
+            apm: this.config?.apm?.enable && this.levels.apmLevel <= 3,
+            fluent: this.config?.fluent?.enable && this.levels.fluentLevel <= 3,
+            kafka: this.config?.kafka?.enable && this.levels.kafkaLevel <= 3,
+            sentry: this.config?.sentry?.enable && this.levels.sentryLevel <= 3,
         })
     }
 
@@ -180,22 +170,10 @@ export class AlexandriaEntry {
      */
     warn() {
         this.broadCast(this.entry, 'warn', {
-            apm:
-                this.config?.apm?.enable &&
-                this.levels &&
-                this.levels.apmLevel <= 2,
-            fluent:
-                this.config?.fluent?.enable &&
-                this.levels &&
-                this.levels.fluentLevel <= 2,
-            kafka:
-                this.config?.kafka?.enable &&
-                this.levels &&
-                this.levels.kafkaLevel <= 2,
-            sentry:
-                this.config?.sentry?.enable &&
-                this.levels &&
-                this.levels.sentryLevel <= 2,
+            apm: this.config?.apm?.enable && this.levels.apmLevel <= 2,
+            fluent: this.config?.fluent?.enable && this.levels.fluentLevel <= 2,
+            kafka: this.config?.kafka?.enable && this.levels.kafkaLevel <= 2,
+            sentry: this.config?.sentry?.enable && this.levels.sentryLevel <= 2,
         })
     }
 
@@ -204,22 +182,10 @@ export class AlexandriaEntry {
      */
     error() {
         this.broadCast(this.entry, 'error', {
-            apm:
-                this.config?.apm?.enable &&
-                this.levels &&
-                this.levels.apmLevel <= 1,
-            fluent:
-                this.config?.fluent?.enable &&
-                this.levels &&
-                this.levels.fluentLevel <= 1,
-            kafka:
-                this.config?.kafka?.enable &&
-                this.levels &&
-                this.levels.kafkaLevel <= 1,
-            sentry:
-                this.config?.sentry?.enable &&
-                this.levels &&
-                this.levels.sentryLevel <= 1,
+            apm: this.config?.apm?.enable && this.levels.apmLevel <= 1,
+            fluent: this.config?.fluent?.enable && this.levels.fluentLevel <= 1,
+            kafka: this.config?.kafka?.enable && this.levels.kafkaLevel <= 1,
+            sentry: this.config?.sentry?.enable && this.levels.sentryLevel <= 1,
         })
     }
 
@@ -228,22 +194,12 @@ export class AlexandriaEntry {
      */
     fatal() {
         this.broadCast(this.entry, 'fatal', {
-            apm:
-                this.config?.apm?.enable &&
-                this.levels &&
-                this.levels.apmLevel === 0,
+            apm: this.config?.apm?.enable && this.levels.apmLevel === 0,
             fluent:
-                this.config?.fluent?.enable &&
-                this.levels &&
-                this.levels.fluentLevel === 0,
-            kafka:
-                this.config?.kafka?.enable &&
-                this.levels &&
-                this.levels.kafkaLevel === 0,
+                this.config?.fluent?.enable && this.levels.fluentLevel === 0,
+            kafka: this.config?.kafka?.enable && this.levels.kafkaLevel === 0,
             sentry:
-                this.config?.sentry?.enable &&
-                this.levels &&
-                this.levels.sentryLevel === 0,
+                this.config?.sentry?.enable && this.levels.sentryLevel === 0,
         })
     }
 }

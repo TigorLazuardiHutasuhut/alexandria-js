@@ -7,8 +7,11 @@ import fluent, { FluentSender } from 'fluent-logger'
 import kafka, { KafkaClient, Producer as KafkaProducer } from 'kafka-node'
 import { AlexandriaBaseEntry, AlexandriaEntry, Entry } from './logger'
 
+/** APMAgent is declared this way because interface apm
+ * is not exported by the package */
 export type APMAgent = typeof agent
 
+/** interface for instances autocomplete */
 export interface Instances {
     winston: Winston
     apm?: APMAgent
@@ -28,7 +31,7 @@ class Alexandria {
     /**
      * levels is an object with levels parsed from string to int.
      */
-    private levels?: Levels
+    private levels: Levels
     /**
      * Creates new Alexandria instance. If config is not passed,
      * Alexandria only logs to stdout and also without service identification.
@@ -41,9 +44,9 @@ class Alexandria {
      * const Alexandria = require('alexandria')
      * const env = process.env.NODE_ENV === 'production'
      * const alexa = new Alexandria({
-     *     serviceName : "Service A", // Required
-     *     serviceVersion : "1.0.0", // Required
-     *     serviceEnvironment : process.env.NODE_ENV || "production", // Required
+     *     serviceName : 'Service A', // Required
+     *     serviceVersion : '1.0.0', // Required
+     *     serviceEnvironment : process.env.NODE_ENV || 'production', // Required
      *     sentry: { // Optional
      *         enable: env,
      *         dsn: 'https://key@sentry.io/service_id',
@@ -64,12 +67,10 @@ class Alexandria {
      *         enable: env,
      *         topic: 'some_job',
      *         brokers: 'http://localhost:2181',
-     *         topicPrefix: new Date(
-     *                 new Date().getTime() - (new Date().getTimezoneOffset() * 60000)
-     *             ).toISOString().split('T')[0],
-     *         topicSuffix: 'log',
+     *         topicPrefix: 'foo',
+     *         topicSuffix: 'bar',
      *         level: 'info',
-     *     }, // Generate and log to new topic with format 'yyyy-mm-dd.some_job.log'
+     *     }, // Generate and log to new topic with format 'foo.some_job.bar'
      *     verbose: false,
      *     monitorUncaughtException: true,
      *     monitorUncaughtExceptionDelay: 30000,
@@ -117,6 +118,7 @@ class Alexandria {
                 )
             }, this.config?.monitorUncaughtExceptionDelay || 30000)
         }
+        this.levels = this.parseLevels()
         if (typeof config === 'undefined') {
             return
         }
@@ -155,7 +157,6 @@ class Alexandria {
                 }),
             )
         }
-        this.levels = this.parseLevels()
     }
     private parseLevels(): Levels {
         let apmLevel: number
@@ -285,8 +286,8 @@ class Alexandria {
         return new AlexandriaEntry(
             entry,
             this.instances,
-            this.config,
             this.levels,
+            this.config,
         )
     }
 }
