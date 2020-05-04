@@ -1135,7 +1135,7 @@
 0	package.json	/^        "dist\/**\/*"$/;"	s	array:files
 0	package.json	/^        "doc"$/;"	s	array:pre-commit
 0	package.json	/^        "logger",$/;"	s	array:keywords
-0	tsconfig.json	/^    "exclude": ["node_modules", "**\/__tests__\/**"]$/;"	s	array:exclude
+0	tsconfig.json	/^    "exclude": ["node_modules", "**\/__tests__\/**"],$/;"	s	array:exclude
 0	tsconfig.json	/^    "include": ["src"],$/;"	s	array:include
 1	docs/assets/js/search.json	/^{"kinds":{"1":"Module","128":"Class","256":"Interface","512":"Constructor","1024":"Property","20/;"	a	array:index.fieldVectors
 1	docs/assets/js/search.json	/^{"kinds":{"1":"Module","128":"Class","256":"Interface","512":"Constructor","1024":"Property","20/;"	a	array:index.fieldVectors.0
@@ -1605,7 +1605,7 @@
 1	docs/assets/js/search.json	/^{"kinds":{"1":"Module","128":"Class","256":"Interface","512":"Constructor","1024":"Property","20/;"	s	array:index.fields
 1	docs/assets/js/search.json	/^{"kinds":{"1":"Module","128":"Class","256":"Interface","512":"Constructor","1024":"Property","20/;"	s	object:kinds
 1	package.json	/^        "winston",$/;"	s	array:keywords
-1	tsconfig.json	/^    "exclude": ["node_modules", "**\/__tests__\/**"]$/;"	s	array:exclude
+1	tsconfig.json	/^    "exclude": ["node_modules", "**\/__tests__\/**"],$/;"	s	array:exclude
 10	docs/assets/js/search.json	/^{"kinds":{"1":"Module","128":"Class","256":"Interface","512":"Constructor","1024":"Property","20/;"	a	array:index.fieldVectors
 10	docs/assets/js/search.json	/^{"kinds":{"1":"Module","128":"Class","256":"Interface","512":"Constructor","1024":"Property","20/;"	a	array:index.invertedIndex
 10	docs/assets/js/search.json	/^{"kinds":{"1":"Module","128":"Class","256":"Interface","512":"Constructor","1024":"Property","20/;"	o	array:rows
@@ -2807,7 +2807,7 @@ error	src/logger.ts	/^    error?: Error | null$/;"	p	interface:AlexandriaBaseEnt
 error	src/logger.ts	/^    error?: Error | null$/;"	p	interface:Entry
 esModuleInterop	tsconfig.json	/^        "esModuleInterop": true$/;"	b	object:compilerOptions
 escapeCharacter	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.QueryLexer
-exclude	tsconfig.json	/^    "exclude": ["node_modules", "**\/__tests__\/**"]$/;"	a
+exclude	tsconfig.json	/^    "exclude": ["node_modules", "**\/__tests__\/**"],$/;"	a
 extendStatics	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	f
 fatal	docs/classes/_logger_.alexandriaentry.html	/^					<a name="fatal" class="tsd-anchor"><\/a>$/;"	a
 fatal	docs/classes/_logger_.alexandriaentry.html	/^					<h3>fatal<\/h3>$/;"	j
@@ -3205,6 +3205,7 @@ message	src/logger.ts	/^        const message = JSON.stringify(payload)$/;"	C	me
 message	src/logger.ts	/^    message?: string | null$/;"	p	interface:AlexandriaBaseEntry
 message	src/logger.ts	/^    message?: string | null$/;"	p	interface:Entry
 minimize	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.TokenSet.Builder
+mode	tsconfig.json	/^        "mode": "files",$/;"	s	object:typedocOptions
 module	tsconfig.json	/^        "module": "CommonJS",$/;"	s	object:compilerOptions
 moduleResolution	tsconfig.json	/^        "moduleResolution": "Node",$/;"	s	object:compilerOptions
 monitorUncaughtException	src/interface.ts	/^    monitorUncaughtException?: boolean$/;"	p	interface:AlexandriaConfig
@@ -3403,6 +3404,7 @@ onScroll	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Buil
 onScroll	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:Viewport
 ousli	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	p	class:e.stemmer.e
 ousness	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	p	class:e.stemmer.e
+out	tsconfig.json	/^        "out": "docs"$/;"	s	object:typedocOptions
 outDir	tsconfig.json	/^        "outDir": ".\/dist",$/;"	s	object:compilerOptions
 p	docs/assets/css/main.css	/^p, pre {$/;"	s
 panic	docs/classes/_logger_.alexandriaentry.html	/^					<a name="panic" class="tsd-anchor"><\/a>$/;"	a
@@ -3847,6 +3849,7 @@ tsd-widgets	docs/modules/_interface_.html	/^				<div class="table-cell" id="tsd-
 tsd-widgets	docs/modules/_logger_.html	/^				<div class="table-cell" id="tsd-widgets">$/;"	I
 typedoc	docs/assets/js/main.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	v
 typedoc	package.json	/^        "typedoc": "^0.17.6",$/;"	s	object:devDependencies
+typedocOptions	tsconfig.json	/^    "typedocOptions": {$/;"	o
 typescript	package.json	/^        "typescript": "^3.8.3"$/;"	s	object:devDependencies
 ul	docs/assets/css/main.css	/^dl, menu, ol, ul {$/;"	s
 ul	docs/assets/css/main.css	/^menu, ol, ul {$/;"	s

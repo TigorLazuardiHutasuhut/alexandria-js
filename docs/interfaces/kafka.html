@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>APM | alexandria</title>
+	<title>Kafka | alexandria</title>
 	<meta name="description" content="Documentation for alexandria">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,31 +56,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_interface_.html">&quot;interface&quot;</a>
-				</li>
-				<li>
-					<a href="_interface_.apm.html">APM</a>
+					<a href="kafka.html">Kafka</a>
 				</li>
 			</ul>
-			<h1>Interface APM</h1>
+			<h1>Interface Kafka</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Enables integration with APM if <code>enable</code> is set to true.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">APM</span>
+						<span class="target">Kafka</span>
 					</li>
 				</ul>
 			</section>
@@ -91,10 +81,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.apm.html#enable" class="tsd-kind-icon">enable</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.apm.html#level" class="tsd-kind-icon">level</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.apm.html#token" class="tsd-kind-icon">token</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_interface_.apm.html#url" class="tsd-kind-icon">url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="kafka.html#brokers" class="tsd-kind-icon">brokers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="kafka.html#enable" class="tsd-kind-icon">enable</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="kafka.html#level" class="tsd-kind-icon">level</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="kafka.html#topic" class="tsd-kind-icon">topic</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="kafka.html#topicprefix" class="tsd-kind-icon">topic<wbr>Prefix</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="kafka.html#topicsuffix" class="tsd-kind-icon">topic<wbr>Suffix</a></li>
 							</ul>
 						</section>
 					</div>
@@ -103,12 +95,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="brokers" class="tsd-anchor"></a>
+					<h3>brokers</h3>
+					<div class="tsd-signature tsd-kind-icon">brokers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in interface.ts:70</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="enable" class="tsd-anchor"></a>
 					<h3>enable</h3>
 					<div class="tsd-signature tsd-kind-icon">enable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in interface.ts:49</li>
+							<li>Defined in interface.ts:68</li>
 						</ul>
 					</aside>
 				</section>
@@ -118,27 +120,42 @@
 					<div class="tsd-signature tsd-kind-icon">level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"debug"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"info"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"warn"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"error"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"fatal"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in interface.ts:51</li>
+							<li>Defined in interface.ts:76</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Set on what level will the <i>automatic</i> payload send to senty. Default is <code>info</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="topic" class="tsd-anchor"></a>
+					<h3>topic</h3>
+					<div class="tsd-signature tsd-kind-icon">topic<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in interface.ts:69</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="token" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> token</h3>
-					<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="topicprefix" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> topic<wbr>Prefix</h3>
+					<div class="tsd-signature tsd-kind-icon">topic<wbr>Prefix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in interface.ts:52</li>
+							<li>Defined in interface.ts:71</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="url" class="tsd-anchor"></a>
-					<h3>url</h3>
-					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="topicsuffix" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> topic<wbr>Suffix</h3>
+					<div class="tsd-signature tsd-kind-icon">topic<wbr>Suffix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in interface.ts:50</li>
+							<li>Defined in interface.ts:72</li>
 						</ul>
 					</aside>
 				</section>
@@ -150,57 +167,72 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_alexandria_.html">&quot;alexandria&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class="current tsd-kind-module">
-						<a href="../modules/_interface_.html">&quot;interface&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_logger_.html">&quot;logger&quot;</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="../classes/alexandria.html" class="tsd-kind-icon">Alexandria</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/alexandriaentry.html" class="tsd-kind-icon">Alexandria<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="apm.html" class="tsd-kind-icon">APM</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="alexandriabaseentry.html" class="tsd-kind-icon">Alexandria<wbr>Base<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="alexandriaconfig.html" class="tsd-kind-icon">Alexandria<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="entry.html" class="tsd-kind-icon">Entry</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="fluent.html" class="tsd-kind-icon">Fluent</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="instances.html" class="tsd-kind-icon">Instances</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_interface_.apm.html" class="tsd-kind-icon">APM</a>
+					<li class="current tsd-kind-interface">
+						<a href="kafka.html" class="tsd-kind-icon">Kafka</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_interface_.apm.html#enable" class="tsd-kind-icon">enable</a>
+								<a href="kafka.html#brokers" class="tsd-kind-icon">brokers</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_interface_.apm.html#level" class="tsd-kind-icon">level</a>
+								<a href="kafka.html#enable" class="tsd-kind-icon">enable</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_interface_.apm.html#token" class="tsd-kind-icon">token</a>
+								<a href="kafka.html#level" class="tsd-kind-icon">level</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_interface_.apm.html#url" class="tsd-kind-icon">url</a>
+								<a href="kafka.html#topic" class="tsd-kind-icon">topic</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="kafka.html#topicprefix" class="tsd-kind-icon">topic<wbr>Prefix</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="kafka.html#topicsuffix" class="tsd-kind-icon">topic<wbr>Suffix</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_interface_.alexandriaconfig.html" class="tsd-kind-icon">Alexandria<wbr>Config</a>
+					<li class=" tsd-kind-interface">
+						<a href="levels.html" class="tsd-kind-icon">Levels</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_interface_.fluent.html" class="tsd-kind-icon">Fluent</a>
+					<li class=" tsd-kind-interface">
+						<a href="selectinstances.html" class="tsd-kind-icon">Select<wbr>Instances</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_interface_.kafka.html" class="tsd-kind-icon">Kafka</a>
+					<li class=" tsd-kind-interface">
+						<a href="sentry.html" class="tsd-kind-icon">Sentry</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_interface_.levels.html" class="tsd-kind-icon">Levels</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_interface_.sentry.html" class="tsd-kind-icon">Sentry</a>
+					<li class=" tsd-kind-type-alias">
+						<a href="../globals.html#apmagent" class="tsd-kind-icon">APMAgent</a>
 					</li>
 				</ul>
 			</nav>
@@ -212,14 +244,16 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 			</ul>
 		</div>
 	</div>
